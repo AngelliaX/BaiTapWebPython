@@ -1,0 +1,43 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.note {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+    margin: 20px;
+    display: inline-block;
+    position: absolute; /* added */
+    top: 0; /* added */
+    left: 0; /* added */
+    cursor: move; /* added */
+}
+
+.task {
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.task:last-child {
+    border-bottom: none;
+}
+
+.task input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.task a {
+    text-decoration: none;
+    color: #337ab7;
+    margin-left: 10px;
+}
+
+.task a:hover {
+    color: #23527c;
+}
