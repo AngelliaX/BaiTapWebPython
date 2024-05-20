@@ -45,13 +45,15 @@ def get_todo_list(userId):
         cursor.execute(query)
         # conn.commit()
         todos = cursor.fetchall()
+        todolist = []
         print("Length: ", len(todos))
         print("Todos: ", todos)
         for row in todos:
-            print(row)
-            
+            print(row[0])
+            todo = {"id": row[0], "title": row[1], "data": row[2], "status": row[3], "userId": row[4]}
+            todolist.append(todo)
         # print(todos)
         conn.close()
-        return todos
+        return todolist
     except Exception as e:
         return str(e)
