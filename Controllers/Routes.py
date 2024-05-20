@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, make_response, redirect, request, url_for
 from Models.User import *
+from Models.TodoList import *
 mod = Blueprint('routes', __name__)
 
 
-todos = [{"task":"Sample Todo 1", "done":False},{"task":"Sample Todo 2", "done":False}]
+# todos = [{"task":"Sample Todo 1", "done":False},{"task":"Sample Todo 2", "done":False}]
 
 
 
@@ -11,7 +12,16 @@ todos = [{"task":"Sample Todo 1", "done":False},{"task":"Sample Todo 2", "done":
 def index():
     print(request.cookies)
     if 'username' in request.cookies:
-        return render_template("index.html", todos=todos)
+        todos = get_todo_list(request.cookies["userId"])
+        # print(len(todos))
+        for row in todos:
+            print(row)
+        #     print("Id: ", row[0])
+        #     print("Title: ", row[1])
+        #     print("Data: ", row[2])
+        return render_template("index2.html", todos=todos,
+                                              username = request.cookies["username"],
+                                              userId = request.cookies["userId"])
     else:
         return redirect(url_for("routes.login"))
 
@@ -62,13 +72,15 @@ def login():
         password = request.form['password']
         
         if not username or not password:
-            return render_template("login.html", noti="Vui lòng điền đủ")
+            return render_template("login.html", noti="Vui lòng điền đủ thông tin!")
         
         result = checkUser(username, password)
         
         if result is True:
+            user = getUserByNameAndPass(username, password)
             resp = make_response(redirect(url_for('routes.index')))
             resp.set_cookie('username', username, max_age=3*24*60*60)  # Set cookie to last 3 days
+            resp.set_cookie('userId', str(user[0]), max_age=3*24*60*60)
             return resp
         else:
             return render_template("login.html", noti=result)
@@ -88,10 +100,10 @@ def register():
         confirm_password = request.form['confirm_password']
 
         if not (username and password and confirm_password):
-            return render_template("register.html", noti="Please fill in all fields")
+            return render_template("register.html", noti="Vui lòng điền đủ thông tin!")
 
         if password != confirm_password:
-            return render_template("register.html", noti="Password and confirm password do not match")
+            return render_template("register.html", noti="Mật khẩu và xác nhận mật khẩu phải trùng khớp nhau!")
 
         result = addUser(username, password)
         if result is True:
@@ -104,7 +116,11 @@ def register():
 
     return render_template("register.html", noti=None)
 
-
+@mod.route('/logout')
+def logout():
+    resp = make_response(redirect(url_for('routes.login')))
+    resp.set_cookie('username', '', expires=0)
+    return resp
 
 
 @mod.route('/page2')

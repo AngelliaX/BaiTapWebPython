@@ -23,7 +23,17 @@ conn.close()
 
 #######
 
-
+def getUserByNameAndPass(username, password):
+    try:
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+        user = cursor.fetchone()
+        conn.commit()
+        conn.close()
+        return user
+    except Exception as e:
+        return str(e)
 
 
 def addUser(username, password):
@@ -49,7 +59,7 @@ def checkUser(username, password):
         if user:
             return True
         else:
-            return "Invalid username or password"
+            return "Username hoặc password không hợp lệ!"
     except Exception as e:
         return str(e)
 

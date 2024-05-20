@@ -3,6 +3,8 @@ from Controllers import Routes
 
 
 app = Flask(__name__,template_folder='Views/templates')
+# app = Flask(__name__,template_folder='TEMP-Frontend/CHAPGPT')
+
 
 app.register_blueprint(Routes.mod)
 
