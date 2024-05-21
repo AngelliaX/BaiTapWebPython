@@ -4,6 +4,7 @@ from Models.TodoList import *
 mod = Blueprint('routes', __name__)
 import time
 
+
 # todos = [{"task":"Sample Todo 1", "done":False},{"task":"Sample Todo 2", "done":False}]
 
 
@@ -19,6 +20,12 @@ def index():
                                               time=time.time())
     else:
         return redirect(url_for("routes.login"))
+
+@mod.route('/user/<int:id>', methods=["GET"])
+def user(id):
+    user = getUser(id)    
+    return render_template("profile.html", user = user)
+
 
 
 @mod.route('/addTodo', methods=["POST"])
@@ -42,25 +49,25 @@ def editTodo():
     id = request.form.get('todoId')
     title = request.form.get('todoTitle')
     data = request.form.get('description')
-    status = request.form.get('status')
+    status = request.form.get('status').replace('\n', '')
     updateTodo(title, data, status, id)
     return redirect(url_for("routes.index"))
     
 
-@mod.route('/edit/<int:index>', methods=["GET", "POST"])
-def edit(index):
-    todo = todos[index]
-    if request.method == "POST":
-        todo['task'] = request.form["todo"]
-        return redirect(url_for("routes.index"))
-    else:
-        return render_template("edit.html",todo = todo, index=index)
+# @mod.route('/edit/<int:index>', methods=["GET", "POST"])
+# def edit(index):
+#     todo = todos[index]
+#     if request.method == "POST":
+#         todo['task'] = request.form["todo"]
+#         return redirect(url_for("routes.index"))
+#     else:
+#         return render_template("edit.html",todo = todo, index=index)
 
 
-@mod.route('/check/<int:index>')
-def check(index):
-    todos[index]['done'] = not todos[index]['done']
-    return redirect(url_for("routes.index"))
+# @mod.route('/check/<int:index>')
+# def check(index):
+#     todos[index]['done'] = not todos[index]['done']
+#     return redirect(url_for("routes.index"))
 
 @mod.route('/deleteTodo', methods=["POST"])
 def deleteTodo():
@@ -69,10 +76,10 @@ def deleteTodo():
     return redirect(url_for("routes.index"))
 
 
-@mod.route('/delete/<int:index>')
-def delete(index):
-    del todos[index]
-    return redirect(url_for("routes.index"))
+# @mod.route('/delete/<int:index>')
+# def delete(index):
+#     del todos[index]
+#     return redirect(url_for("routes.index"))
 
 
 

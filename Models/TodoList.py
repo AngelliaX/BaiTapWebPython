@@ -1,6 +1,7 @@
 import sqlite3
 from flask import g
 import os
+import html
 
 data_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'database')
 DATABASE = os.path.join(data_folder, 'SQLITE3.db')
