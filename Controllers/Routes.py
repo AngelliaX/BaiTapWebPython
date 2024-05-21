@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, make_response, redirect, request, 
 from Models.User import *
 from Models.TodoList import *
 mod = Blueprint('routes', __name__)
-
+import time
 
 # todos = [{"task":"Sample Todo 1", "done":False},{"task":"Sample Todo 2", "done":False}]
 
@@ -13,20 +13,23 @@ def index():
     print(request.cookies)
     if 'username' in request.cookies:
         todos = get_todo_list(request.cookies["userId"])
-        # print(len(todos))
-        for row in todos:
-            print(row)
-        #     print("Id: ", row[0])
-        #     print("Title: ", row[1])
-        #     print("Data: ", row[2])
         return render_template("index2.html", todos=todos,
                                               username = request.cookies["username"],
-                                              userId = request.cookies["userId"])
+                                              userId = request.cookies["userId"],
+                                              time=time.time())
     else:
         return redirect(url_for("routes.login"))
 
 
-
+@mod.route('/addTodo', methods=["POST"])
+def addTodo():
+    id = request.form.get('todoId')
+    title = request.form.get('todoTitle')
+    data = request.form.get('description')
+    status = request.form.get('status')
+    userId = request.form.get('userId')
+    insertTodo(id, title, data, status, userId)
+    return redirect(url_for("routes.index"))
 
 @mod.route('/add', methods=["POST"])
 def add():
@@ -34,8 +37,15 @@ def add():
     todos.append({"task": todo, "done": False})
     return redirect(url_for("routes.index"))
 
-
-
+@mod.route('/editTodo', methods=["POST"])
+def editTodo():
+    id = request.form.get('todoId')
+    title = request.form.get('todoTitle')
+    data = request.form.get('description')
+    status = request.form.get('status')
+    updateTodo(title, data, status, id)
+    return redirect(url_for("routes.index"))
+    
 
 @mod.route('/edit/<int:index>', methods=["GET", "POST"])
 def edit(index):
@@ -47,14 +57,16 @@ def edit(index):
         return render_template("edit.html",todo = todo, index=index)
 
 
-
-
 @mod.route('/check/<int:index>')
 def check(index):
     todos[index]['done'] = not todos[index]['done']
     return redirect(url_for("routes.index"))
 
-
+@mod.route('/deleteTodo', methods=["POST"])
+def deleteTodo():
+    id = request.form.get('id')
+    removeTodo(id)
+    return redirect(url_for("routes.index"))
 
 
 @mod.route('/delete/<int:index>')

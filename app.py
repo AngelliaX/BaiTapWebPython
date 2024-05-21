@@ -2,7 +2,8 @@ from flask import Flask
 from Controllers import Routes
 
 
-app = Flask(__name__,template_folder='Views/templates')
+app = Flask(__name__,template_folder='Views/templates', static_folder='Views/static')
+
 # app = Flask(__name__,template_folder='TEMP-Frontend/CHAPGPT')
 
 
