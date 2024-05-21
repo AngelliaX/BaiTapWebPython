@@ -1,0 +1,409 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('assets/img/background.webp'); /* Replace with your background image URL */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.header {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    color: white;
+}
+
+.subtitle {
+    color: gray;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+.note {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.note-title {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.task-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-list li {
+    margin-bottom: 10px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid black;
+    margin: 20px 0;
+}
+
+.task-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 75px;
+    height: 100%;
+    background-color: rgba(20,24,68,0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.user-icon {
+    background-image: url('assets/img/avatar.png');
+    width: 37px;
+    height: 37px;
+    background-color: white;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar-button {
+    width: 37px;
+    height: 37px;
+    margin: 10px 0;
+    background-color: rgba(44,48,87,255);
+    color: gray;
+    border: none;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-note {
+    position: absolute;
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 72px;
+}
+
+.plus-icon {
+    font-size: 24px;
+    color: black;
+}
+
+/* Modal styles */
+/* Modal styles */
+.add-note {
+    position: absolute;
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 72px;
+}
+
+.plus-icon {
+    font-size: 24px;
+    color: black;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    bottom: 0px; /* Position near the bottom of the screen */
+    right: 140px; /* Position close to the plus sign */
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(46,47,49,0.7);
+    border-radius: 15px;
+}
+
+.modal-content {
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.left-icons {
+    display: flex;
+}
+
+.left-icons .icon {
+    margin-right: 10px;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: rgba(136,136,136,255);
+    text-decoration: none;
+}
+
+.subject {
+    margin-bottom: 20px;
+    text-align: left;
+    display: flex;
+}
+
+.subject label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.subject input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    color: black;
+    font-size: 24px;
+}
+
+.toolbar {
+    background-image: url('assets/img/toolbar.svg');
+    display: flex;
+    justify-content: space-between;
+    
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height:90px;
+}
+
+.left-icons .icon {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+textarea {
+    width: 95%;
+    height: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 13px;
+    background-color: rgba(0,0,0,0);
+    color: black;
+    resize: none;
+    font-size: 18px;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.toggle-label {
+    margin-right: 10px;
+}
+
+#toggle-switch {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    background: #555;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.3s;
+}
+
+#toggle-switch:checked {
+    background: #0f0;
+}
+
+#toggle-switch::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.3s;
+}
+
+#toggle-switch:checked::before {
+    transform: translateX(20px);
+}
+
+.modal button {
+    padding: 10px 20px;
+    background-color: rgba(49,49,50,255);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    width: 175px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal button:hover {
+    background-color: rgba(58,59,62,255);
+}
+
+/*End of modal*/
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    width: 37px; /* Adjust the width as needed */
+    height: 37px; /* Adjust the height as needed */
+    margin: 0 13px;
+    background-color: #333; /* Optional: background color for better visualization */
+    color: #fff; /* Optional: icon color */
+    border-radius: 37%; /* Optional: make the icon container circular */
+    border: 2px solid black;
+}
+
+
+/*New features*/
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-header i {
+    margin-top: -30px;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.completed-label {
+    font-weight: bold;
+}
+
+/* Modal Setting styles */
+.modal-setting {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 160px); /* Positioned right to the .note */
+    transform: translateY(-50%);
+    width: 180px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(46,47,49,0.7);
+    border-radius: 15px;
+}
+
+.modal-content .setting-option {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: black;
+}
+
+.modal-content .setting-option:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+/* Modal Edit styles */
+#modal-edit .modal-body, #modal-delete .modal-body {
+    padding: 20px;
+    color: black;
+}
+
+#modal-edit select, #modal-edit textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#modal-edit button, #modal-delete button {
+    float: right;
+}
+
+/* Close button common styles */
+.modal .modal-header .close {
+    cursor: pointer;
+}
+
+/* Delete Modal styles */
+#modal-delete .modal-header p {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+

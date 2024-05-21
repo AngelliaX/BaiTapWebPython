@@ -13,7 +13,7 @@ def index():
     print(request.cookies)
     if 'username' in request.cookies:
         todos = get_todo_list(request.cookies["userId"])
-        return render_template("index2.html", todos=todos,
+        return render_template("index.html", todos=todos,
                                               username = request.cookies["username"],
                                               userId = request.cookies["userId"],
                                               time=time.time())
@@ -23,13 +23,20 @@ def index():
 
 @mod.route('/addTodo', methods=["POST"])
 def addTodo():
-    id = request.form.get('todoId')
-    title = request.form.get('todoTitle')
-    data = request.form.get('description')
-    status = request.form.get('status')
-    userId = request.form.get('userId')
-    insertTodo(id, title, data, status, userId)
-    return redirect(url_for("routes.index"))
+    try:
+        print('called 1')
+        id = request.form.get('todoId')
+        title = request.form.get('todoTitle')
+        data = request.form.get('description')
+        status = request.form.get('status')
+        userId = request.form.get('userId')
+        print('called 2')
+        insertTodo(id, title, data, status, userId)
+        print('called 3')
+        print(id, title, data, status, userId)
+        return redirect(url_for("routes.index"))
+    except Exception as e:
+        return str(e)
 
 @mod.route('/add', methods=["POST"])
 def add():

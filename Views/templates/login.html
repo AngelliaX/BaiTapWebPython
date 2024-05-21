@@ -1,75 +1,899 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+<html lang="en" dir="ltr" data-environment="production" data-version="v-2405210725-02278-production" data-variant="desktop" class="windows windowsTouch chrome webkit desktop supported touchable mousable retina cookies">
+    <head>
+        <title>Đăng nhập vào ViệtTask</title>
+        <meta name="description" content="Login to see your complete body of work on ViệtTask." />
 
-        .container {
-            position: relative; /* Needed for absolute positioning of the "Register" text */
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+        <script type="text/javascript" async="" src="https://padlet.net/v1.1/rudder-analytics.min.js"></script>
+        <script type="text/javascript">
+            (function () {
+                if (!window.ww) {
+                    window.ww = {};
+                }
+                window.ww.vueStartingState = {
+                    loginMethods: [
+                        { name: "password" },
+                        { name: "apple", url: "https://google.com/auth/apple?platform=web&tenant_id=1" },
+                        { name: "microsoft", url: "https://google.com/auth/ms_graph?tenant_id=1" },
+                        { name: "google", url: "https://google.com/auth/google_oauth2?tenant_id=1" },
+                    ],
+                    userLoginMethods: [
+                        { name: "password" },
+                        { name: "apple", url: "https://google.com/auth/apple?platform=web&tenant_id=1" },
+                        { name: "microsoft", url: "https://google.com/auth/ms_graph?tenant_id=1" },
+                        { name: "google", url: "https://google.com/auth/google_oauth2?tenant_id=1" },
+                    ],
+                    tenantName: "ViệtTask",
+                    tenantLogo: null,
+                };
+            })();
+        </script>
 
-        input[type="text"],
-        input[type="password"],
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+        <script src="https://padlet.net/packs/js/runtime~auth_login_app-e9ef2c0a92fc4ca15a71.js" defer="defer"></script>
+        <script src="https://padlet.net/packs/js/0-2995d699ef588cc6f176.chunk.js" defer="defer"></script>
+        <script src="https://padlet.net/packs/js/1-a94f5cfd746d46ef6ffc.chunk.js" defer="defer"></script>
+        <script src="https://padlet.net/packs/js/auth_login_app-0fafbd2b306b614ae30a.chunk.js" defer="defer"></script>
 
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+        <link rel="stylesheet" media="screen" href="https://padlet.net/packs/css/auth_login_app-860dffd9.chunk.css" />
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
+        <link rel="preload" href="https://padlet.net/packs/media/fonts/Oricons-3416176f0ed993192c20128ab978818e.woff2" as="font" crossorigin="" />
+        <link rel="preload" href="https://padlet.net/fonts/inter/3.19/Inter-roman.var.woff2" as="font" crossorigin="" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta name="theme-color" content="rgb(17,17,17)" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="rgb(255,255,255)" media="(prefers-color-scheme: light)" />
 
-        .register-link {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Login</h2>
-        {% if noti %}
-            <p>{{ noti }}</p>
-        {% endif %}
-        <form action="{{ url_for('routes.login') }}" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username"><br><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password"><br><br>
-            <button type="submit">Login</button>
-        </form>
-        <p style="position: absolute; bottom: 10px; right: 10px;">
-            <a href="/register">Đăng ký</a>
-        </p>
-    </div>
-</body>
+        <meta property="og:title" content="Log in to ViệtTask" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Login to see your complete body of work on ViệtTask." />
+        <meta property="og:site_name" content="ViệtTask" />
+        <meta property="fb:app_id" content="166448900169195" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@ViệtTask" />
+        <meta name="twitter:title" content="Log in to ViệtTask" />
+        <meta name="twitter:description" content="Login to see your complete body of work on ViệtTask." />
+        <meta name="twitter:image" content="https://padlet.net/meta/opengraph.jpg" />
+
+        <link rel="icon" href="https://padlet.net/favicon.ico" sizes="32x32" />
+        <link rel="icon" type="image/svg+xml" href="https://padlet.net/favicon.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="https://padlet.net/apple-touch-icon.png" />
+
+        <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/kcljbbiddpoeaknnjaminoceoojdbikp" />
+        <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ppckapbnfhikdajgehibjapcohbaomhd" />
+        <meta name="application-name" content="Padlet" />
+        <meta name="msapplication-TileImage" content="https://padlet.net/assets/ie10-tile-42822db34f1934a4c2b3e61cc9907a61393a70dae4d4335103b2815a8e285493.png" />
+        <meta name="msapplication-TileColor" content="#fe2e9a" />
+        <meta name="msapplication-task" content="name=Home;action-uri=https://padlet.com/;icon-uri=https://padlet.net/assets/home-32-c671a7751d3b44498697f84b2d4180f7c36462d5c12da2c9aecfe4c1409a36c9.ico" />
+        <meta name="msapplication-task" content="name=My padlets;action-uri=https://padlet.com/account/walls;icon-uri=https://padlet.net/assets/grid-32-7326a51b5665f92ccb0963eb3bec19423710544dae29597f780d65a1c4cac182.ico" />
+        <meta name="msapplication-task" conent="name=Create;action-uri=https://padlet.com/create;icon-uri=https://padlet.net/assets/plus-32-c3c006e2fbbb7ef4a6ed1c78403e4de3d20482499888f10e2e14daf5b1f03492.ico" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="ViệtTask" name="apple-mobile-web-app-title" />
+        <link href="https://padlet.net/assets/ios_startup-1bb3d894ac28c35d60beb6066b227313799ba381203b44a581bc001a4498c6fc.png" rel="apple-touch-startup-image" />
+        <meta content="yes" name="mobile-web-app-capable" />
+        <link href="https://padlet.net/assets/crane_196x196-a7319aaa217d6f0198f1ea8359be879318c79014727d03553af9fe77ce608956.png" rel="icon" sizes="196x196" />
+
+        <script>
+            window.$pepinUser = { userRegistration: "Anonymous", userId: "", tenantId: "1", userAge: 0, userPlanName: "vanilla", userCreatedAt: null };
+        </script>
+        <script>
+            window.$pepinTraits = { userRegistration: "Anonymous", userId: "", tenantId: "1", userAge: 0, userPlanName: "vanilla", userCreatedAt: null };
+        </script>
+        <script type="text/javascript">
+            !(function () {
+                var conn = navigator.connection ? { downlink: navigator.connection.downlink, effective: navigator.connection.effectiveType } : {};
+                var e = (window.rudderanalytics = window.rudderanalytics || []);
+                (e.methods = ["load", "page", "track", "identify", "alias", "group", "ready", "reset", "getAnonymousId", "setAnonymousId"]),
+                    (e.factory = function (t) {
+                        return function () {
+                            var r = Array.prototype.slice.call(arguments);
+                            return r.unshift(t), e.push(r), e;
+                        };
+                    });
+                for (var t = 0; t < e.methods.length; t++) {
+                    var r = e.methods[t];
+                    e[r] = e.factory(r);
+                }
+                (e.loadJS = function (e, t) {
+                    var r = document.createElement("script");
+                    (r.type = "text/javascript"), (r.async = !0), (r.src = "https://padlet.net/v1.1/rudder-analytics.min.js");
+                    var a = document.getElementsByTagName("script")[0];
+                    a.parentNode.insertBefore(r, a);
+                }),
+                    e.loadJS(),
+                    e.load("22crxVC2QvBTRHCDzJOaFA68siE", "https://pepin.padletcdn.com/"),
+                    e.page("Login", "Login", undefined, { conn: conn, traits: $pepinTraits });
+            })();
+        </script>
+
+        <style type="text/css">
+            .loading-text[data-v-5ef2a507] {
+                background-size: 200% auto;
+                animation: slide-5ef2a507 1.5s linear infinite;
+                will-change: background-position;
+            }
+            @keyframes slide-5ef2a507 {
+                to {
+                    background-position: -200% center;
+                }
+            }
+        </style>
+        <style type="text/css">
+            .padlet-logo[data-v-7d61c5cf]:focus-visible {
+                position: relative;
+                outline: none;
+            }
+            .padlet-logo[data-v-7d61c5cf]:focus-visible::after {
+                content: "";
+                position: absolute;
+                pointer-events: none;
+                outline-style: solid;
+                inset-block: calc(var(--logo-height) / 2 * -1);
+                inset-inline: calc(var(--logo-width) / 6 * -1);
+            }
+            .padlet-logo-w-12[data-v-7d61c5cf]:focus-visible::after {
+                --logo-height: 0.75rem;
+                --logo-width: 3rem;
+                outline-width: 2px;
+                border-radius: 0.75rem;
+            }
+            .padlet-logo-w-16[data-v-7d61c5cf]:focus-visible::after {
+                --logo-height: 1rem;
+                --logo-width: 4rem;
+                outline-width: 2px;
+                border-radius: 0.75rem;
+            }
+            .padlet-logo-w-24[data-v-7d61c5cf]:focus-visible::after {
+                --logo-height: 1.5rem;
+                --logo-width: 6rem;
+                outline-width: 3px;
+                border-radius: 1rem;
+            }
+            .padlet-logo-w-32[data-v-7d61c5cf]:focus-visible::after {
+                --logo-height: 2rem;
+                --logo-width: 8rem;
+                outline-width: 4px;
+                border-radius: 1.75rem;
+            }
+            .padlet-logo-w-40[data-v-7d61c5cf]:focus-visible::after {
+                --logo-height: 2.5rem;
+                --logo-width: 10rem;
+                outline-width: 4px;
+                border-radius: 1.75rem;
+            }
+            .padlet-logo-light[data-v-7d61c5cf]:focus-visible::after {
+                outline-color: #9466e8;
+            }
+            .padlet-logo-dark[data-v-7d61c5cf]:focus-visible::after {
+                outline-color: #fec006;
+            }
+            .padlet-logo-auto[data-v-7d61c5cf]:focus-visible::after {
+                outline-color: #9466e8;
+            }
+            @media (prefers-color-scheme: dark) {
+                .padlet-logo-auto[data-v-7d61c5cf]:focus-visible::after {
+                    outline-color: #fec006;
+                }
+            }
+            .padlet-logo:hover:not(:active) .crane-icon[data-v-7d61c5cf] {
+                animation: wiggle-7d61c5cf;
+                animation-duration: 600ms;
+                animation-fill-mode: forward;
+                transition: all 100ms ease-out;
+            }
+            @keyframes wiggle-7d61c5cf {
+                0% {
+                    transform: rotate(8deg);
+                    transition: all 200ms ease-out;
+                }
+                25% {
+                    transform: rotate(-8deg);
+                }
+                50% {
+                    transform: rotate(8deg);
+                }
+                75% {
+                    transform: rotate(-8deg);
+                }
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
+        </style>
+        <style type="text/css">
+            .touch-action-manipulation[data-v-697dc245] {
+                touch-action: manipulation;
+            }
+            .fade[data-v-697dc245] {
+                animation-name: oz-overlay-fade-697dc245;
+                animation-duration: 0.2s;
+                will-change: opacity;
+            }
+            @keyframes oz-overlay-fade-697dc245 {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        </style>
+        <style type="text/css">
+            html,
+            body,
+            div,
+            span,
+            applet,
+            object,
+            iframe,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            blockquote,
+            pre,
+            a,
+            abbr,
+            acronym,
+            address,
+            big,
+            cite,
+            code,
+            del,
+            dfn,
+            em,
+            img,
+            ins,
+            kbd,
+            q,
+            s,
+            samp,
+            small,
+            strike,
+            strong,
+            sub,
+            sup,
+            tt,
+            var,
+            b,
+            u,
+            i,
+            center,
+            dl,
+            dt,
+            dd,
+            ol,
+            ul,
+            li,
+            fieldset,
+            form,
+            label,
+            legend,
+            table,
+            caption,
+            tbody,
+            tfoot,
+            thead,
+            tr,
+            th,
+            td,
+            article,
+            aside,
+            canvas,
+            details,
+            embed,
+            figure,
+            figcaption,
+            footer,
+            header,
+            hgroup,
+            menu,
+            nav,
+            output,
+            ruby,
+            section,
+            summary,
+            time,
+            mark,
+            audio,
+            video {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font: inherit;
+                vertical-align: baseline;
+            }
+            article,
+            aside,
+            details,
+            figcaption,
+            figure,
+            footer,
+            header,
+            hgroup,
+            menu,
+            nav,
+            section {
+                display: block;
+            }
+            body {
+                line-height: 1;
+            }
+            ol,
+            ul {
+                list-style: none;
+            }
+            blockquote,
+            q {
+                quotes: none;
+            }
+            blockquote:before,
+            blockquote:after,
+            q:before,
+            q:after {
+                content: "";
+                content: none;
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            audio,
+            canvas,
+            video {
+                display: inline-block;
+                *display: inline;
+                *zoom: 1;
+            }
+            audio:not([controls]) {
+                display: none;
+            }
+            html {
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+                -ms-touch-action: none;
+            }
+            a:hover,
+            a:active {
+                outline: 0;
+            }
+            sub,
+            sup {
+                position: relative;
+                font-size: 75%;
+                line-height: 0;
+                vertical-align: baseline;
+            }
+            sup {
+                top: -0.5em;
+            }
+            sub {
+                bottom: -0.25em;
+            }
+            button,
+            input,
+            select,
+            textarea {
+                margin: 0;
+                padding: 0;
+                font-size: 100%;
+                vertical-align: middle;
+            }
+            button,
+            input {
+                line-height: normal;
+            }
+            button::-moz-focus-inner,
+            input::-moz-focus-inner {
+                padding: 0;
+                border: 0;
+            }
+            button,
+            input[type="button"],
+            input[type="reset"],
+            input[type="submit"] {
+                cursor: pointer;
+                -webkit-appearance: button;
+            }
+            input[type="search"] {
+                -webkit-appearance: textfield;
+                box-sizing: content-box;
+            }
+            input[type="search"]::-webkit-search-decoration,
+            input[type="search"]::-webkit-search-cancel-button {
+                -webkit-appearance: none;
+            }
+            textarea {
+                overflow: auto;
+                vertical-align: top;
+            }
+            input,
+            button,
+            textarea,
+            :focus {
+                outline: none;
+            }
+            input[type="text"],
+            input[type="password"],
+            input[type="email"],
+            input[type="url"],
+            textarea {
+                -webkit-appearance: none;
+                border-radius: 0;
+            }
+            menu {
+                list-style: none;
+            }
+            a {
+                text-decoration: none;
+            }
+            :root {
+                --vh100: 100vh;
+                --top0: 0;
+                --container-width: 100%;
+            }
+            @supports (-webkit-touch-callout: none) {
+                :not(.mobileApp) :root {
+                    --vh100: 100%;
+                }
+            }
+            body {
+                height: var(--vh100);
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: normal;
+                font-weight: 100;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-Thin.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-Thin.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: italic;
+                font-weight: 100;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-ThinItalic.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-ThinItalic.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: normal;
+                font-weight: 200;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-ExtraLight.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-ExtraLight.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: italic;
+                font-weight: 200;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-ExtraLightItalic.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-ExtraLightItalic.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: normal;
+                font-weight: 300;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-Light.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-Light.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: italic;
+                font-weight: 300;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-LightItalic.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-LightItalic.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: normal;
+                font-weight: 400;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-Regular.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-Regular.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: italic;
+                font-weight: 400;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-Italic.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-Italic.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: normal;
+                font-weight: 500;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-Medium.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-Medium.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: italic;
+                font-weight: 500;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-MediumItalic.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-MediumItalic.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: normal;
+                font-weight: 600;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-SemiBold.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-SemiBold.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: italic;
+                font-weight: 600;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-SemiBoldItalic.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-SemiBoldItalic.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: normal;
+                font-weight: 700;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-Bold.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-Bold.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: italic;
+                font-weight: 700;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-BoldItalic.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-BoldItalic.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: normal;
+                font-weight: 800;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-ExtraBold.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-ExtraBold.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: italic;
+                font-weight: 800;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-ExtraBoldItalic.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-ExtraBoldItalic.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: normal;
+                font-weight: 900;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-Black.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-Black.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter";
+                font-display: swap;
+                font-style: italic;
+                font-weight: 900;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-BlackItalic.woff2") format("woff2"), url("https://padlet.net/fonts/inter/3.19/Inter-BlackItalic.woff") format("woff");
+            }
+            @font-face {
+                font-family: "Inter var";
+                font-display: swap;
+                font-weight: 100 900;
+                font-style: normal;
+                font-named-instance: "Regular";
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-roman.var.woff2") format("woff2");
+            }
+            @font-face {
+                font-family: "Inter var";
+                font-display: swap;
+                font-weight: 100 900;
+                font-style: italic;
+                font-named-instance: "Italic";
+                src: url("https://padlet.net/fonts/inter/3.19/Inter-italic.var.woff2") format("woff2");
+            }
+            @font-face {
+                font-family: "Inter var experimental";
+                font-display: swap;
+                font-weight: 100 900;
+                font-style: oblique 0deg 10deg;
+                src: url("https://padlet.net/fonts/inter/3.19/Inter.var.woff2") format("woff2");
+            }
+            :root {
+                font-family: "Inter var", Inter, sans-serif;
+                font-feature-settings: "ss01", "cv08", "calt";
+            }
+            strong {
+                font-weight: 600;
+            }
+            :root {
+                --dot-grid-url: url(https://padlet.net/packs/media/images/dot_grid_light-5d6d47a89e5b41eabe52b8eba961c929.png);
+            }
+            .dot-grid,
+            html {
+                background-image: var(--dot-grid-url);
+                background-color: #ddd;
+                background-size: 48px;
+                background-position: top left;
+            }
+            .dot-grid-loading {
+                background-image: var(--dot-grid-url), linear-gradient(0deg, #ff4081, #fec006);
+                background-size: 48px, 400% 400%;
+                animation: dot-gradient 4s linear infinite;
+            }
+            @keyframes dot-gradient {
+                0% {
+                    background-position: top left, 0% 200%;
+                }
+                100% {
+                    background-position: top left, 0% -200%;
+                }
+            }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --dot-grid-url: url(https://padlet.net/packs/media/images/dot_grid_dark-6b049085d136a66cadc8865290401049.png);
+                }
+                .dot-grid,
+                html {
+                    background-color: #3d3d3d;
+                }
+                .dot-grid-loading {
+                    background-image: var(--dot-grid-url), linear-gradient(0deg, #ff4081, #9466e8);
+                }
+            }
+            * {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+            html {
+                overflow: hidden;
+                background-position: left top;
+                height: 100vh;
+                font-size: 16px;
+            }
+            @media screen and (orientation: landscape) {
+                html {
+                    overflow: auto;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="0" height="0" viewBox="0 0 1 1" style="position: absolute;">
+            <clipPath id="rounded-hexagon-svg-clip-path" clipPathUnits="objectBoundingBox">
+                <path
+                    d="M 0.371094 0.03125 C 0.449219 -0.0117188 0.550781 -0.0117188 0.628906 0.03125 L 0.871094 0.164062 C 0.949219 0.207031 1 0.285156 1 0.371094 L 1 0.628906 C 1 0.714844 0.949219 0.792969 0.871094 0.835938 L 0.628906 0.96875 C 0.550781 1.011719 0.449219 1.011719 0.371094 0.96875 L 0.128906 0.835938 C 0.0507812 0.792969 0 0.714844 0 0.628906 L 0 0.371094 C 0 0.285156 0.0507812 0.207031 0.128906 0.164062 Z M 0.371094 0.03125"
+                ></path>
+            </clipPath>
+        </svg>
+
+        <div class="relative flex flex-col items-center">
+            <header class="fixed flex items-center justify-between box-border w-full px-4 transition-all h-14 ps-5">
+                <a
+                    href="#main-content"
+                    rel="noopener nofollow"
+                    class="no-underline tap-highlight-transparent cursor-pointer font-sans focus:outline-none flex items-center justify-center text-center py-0 h-8 rounded-xl text-body-small font-semibold ring-offset-1 focus-visible:ring-2 px-3 ring-grape-500 dark:ring-canary-500 dark:ring-offset-grey-900 ring-offset-white aria-disabled:bg-button-disabled-light dark:aria-disabled:bg-button-disabled-dark aria-disabled:text-dark-text-400 dark:aria-disabled:text-light-text-400 hover-hover:aria-disabled:bg-button-disabled-light hover-hover:dark:aria-disabled:bg-button-disabled-dark hover-hover:aria-disabled:text-dark-text-400 hover-hover:dark:aria-disabled:text-light-text-400 hover-hover:active:bg-grape-500 hover-hover:dark:active:bg-canary-500 hover-hover:active:text-light-text-100 hover-hover:dark:active:text-dark-text-100 bg-padlet-pink text-light-text-100 hover-hover:hover:bg-padlet-pink-600 [&amp;:not(:focus-visible)]:sr-only absolute z-global-snackbar top-4 start-1/2 -translate-x-1/2 rtl:translate-x-1/2"
+                    title="Skip to content"
+                >
+                    <span class="flex-1 truncate">Skip to content</span>
+                </a>
+                <a data-v-7d61c5cf="" href="#" data-testid="padletLogo" class="flex items-center group padlet-logo padlet-logo-w-16 padlet-logo-auto">
+                    <svg
+                        data-v-7d61c5cf=""
+                        viewBox="0 0 160 40"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        aria-label="Padlet home"
+                        class="block fill-current text-dark-text-100 dark:text-light-text-100 hover-hover:group-hover:opacity-100 transition-opacity motion-reduce:transition-none w-16"
+                    ></svg>
+                    <!---->
+                </a>
+                <div class="flex items-center text-body-small">
+                    <!-- <span class="text-dark-text-200 dark:text-light-text-200">
+            Chưa có tài khoản?
+          </span> <a href="/register" rel="noopener nofollow" class="font-semibold ms-1 me-2 no-underline tap-highlight-transparent cursor-pointer font-sans oz-text-link-light-secondary dark:oz-text-link-dark-secondary !underline" target="">
+  Đăng ký
+</a> -->
+                </div>
+            </header>
+            <main id="main-content" tabindex="-1" class="fixed bottom-0 flex flex-col justify-center box-border w-full p-4 tablet-portrait:relative tablet-portrait:w-[375px] tablet-portrait:p-0 tablet-portrait:px-4 tablet-portrait:mt-32">
+                <!---->
+                <div class="text-dark-text-100 dark:text-light-text-100 mb-5">
+                    <h1 class="w-56 text-login-heading-1 font-semibold px-2 mb-1">
+                        Đăng nhập
+                    </h1>
+                    <h2 class="text-login-body px-2">
+                        Chào mừng quay trở lại
+                    </h2>
+                </div>
+                <div class="flex flex-col space-y-2 mb-5">
+                    <!---->
+                    <button
+                        class="select-none border-none tap-highlight-transparent cursor-pointer font-sans focus:outline-none flex items-center justify-center text-center py-0 h-10 rounded-2xl text-heading-4 font-semibold focus-visible:ring-[2.5px] ring-offset-[1.5px] pe-11 ps-4 gap-2 ring-grape-500 dark:ring-canary-500 dark:ring-offset-grey-900 ring-offset-white aria-disabled:bg-button-disabled-light dark:aria-disabled:bg-button-disabled-dark aria-disabled:text-dark-text-400 dark:aria-disabled:text-light-text-400 hover-hover:aria-disabled:bg-button-disabled-light hover-hover:dark:aria-disabled:bg-button-disabled-dark hover-hover:aria-disabled:text-dark-text-400 hover-hover:dark:aria-disabled:text-light-text-400 hover-hover:active:bg-grape-500 hover-hover:dark:active:bg-canary-500 hover-hover:active:text-light-text-100 hover-hover:dark:active:text-dark-text-100 bg-grey-900 dark:bg-grey-0 text-light-text-100 dark:text-dark-text-100 hover-hover:hover:bg-grey-800 hover-hover:dark:hover:bg-grey-100"
+                        title="Log in with Google"
+                    >
+                        <span data-v-716abb59="" class="oricon icon-google" style="font-size: 24px; max-width: 24px; width: 24px; height: 24px; overflow: visible;">
+                            <span data-v-716abb59="" class="path1"></span><span data-v-716abb59="" class="path2"></span><span data-v-716abb59="" class="path3"></span><span data-v-716abb59="" class="path4"></span>
+                        </span>
+                        <span class="flex-1 truncate">Log in with Google</span>
+                    </button>
+                    <button
+                        class="select-none border-none tap-highlight-transparent cursor-pointer font-sans focus:outline-none flex items-center justify-center text-center py-0 h-10 rounded-2xl text-heading-4 font-semibold focus-visible:ring-[2.5px] ring-offset-[1.5px] pe-11 ps-4 gap-2 ring-grape-500 dark:ring-canary-500 dark:ring-offset-grey-900 ring-offset-white aria-disabled:bg-button-disabled-light dark:aria-disabled:bg-button-disabled-dark aria-disabled:text-dark-text-400 dark:aria-disabled:text-light-text-400 hover-hover:aria-disabled:bg-button-disabled-light hover-hover:dark:aria-disabled:bg-button-disabled-dark hover-hover:aria-disabled:text-dark-text-400 hover-hover:dark:aria-disabled:text-light-text-400 hover-hover:active:bg-grape-500 hover-hover:dark:active:bg-canary-500 hover-hover:active:text-light-text-100 hover-hover:dark:active:text-dark-text-100 bg-grey-900 dark:bg-grey-0 text-light-text-100 dark:text-dark-text-100 hover-hover:hover:bg-grey-800 hover-hover:dark:hover:bg-grey-100"
+                        title="Log in with Microsoft"
+                    >
+                        <span data-v-716abb59="" class="oricon icon-windows" style="font-size: 24px; max-width: 24px; width: 24px; height: 24px; overflow: visible;">
+                            <span data-v-716abb59="" class="path1"></span><span data-v-716abb59="" class="path2"></span><span data-v-716abb59="" class="path3"></span><span data-v-716abb59="" class="path4"></span>
+                        </span>
+                        <span class="flex-1 truncate">Log in with Microsoft</span>
+                    </button>
+                    <button
+                        class="select-none border-none tap-highlight-transparent cursor-pointer font-sans focus:outline-none flex items-center justify-center text-center py-0 h-10 rounded-2xl text-heading-4 font-semibold focus-visible:ring-[2.5px] ring-offset-[1.5px] pe-11 ps-4 gap-2 ring-grape-500 dark:ring-canary-500 dark:ring-offset-grey-900 ring-offset-white aria-disabled:bg-button-disabled-light dark:aria-disabled:bg-button-disabled-dark aria-disabled:text-dark-text-400 dark:aria-disabled:text-light-text-400 hover-hover:aria-disabled:bg-button-disabled-light hover-hover:dark:aria-disabled:bg-button-disabled-dark hover-hover:aria-disabled:text-dark-text-400 hover-hover:dark:aria-disabled:text-light-text-400 hover-hover:active:bg-grape-500 hover-hover:dark:active:bg-canary-500 hover-hover:active:text-light-text-100 hover-hover:dark:active:text-dark-text-100 bg-grey-900 dark:bg-grey-0 text-light-text-100 dark:text-dark-text-100 hover-hover:hover:bg-grey-800 hover-hover:dark:hover:bg-grey-100"
+                        title="Log in with Apple"
+                    >
+                        <i data-v-716abb59="" aria-hidden="true" class="oricon" style="font-size: 24px; max-width: 24px; width: 24px; height: 24px; overflow: visible;">apple</i> <span class="flex-1 truncate">Log in with Apple</span>
+                    </button>
+                    <!---->
+                    <!---->
+                    <!---->
+                </div>
+                <form action="{{ url_for('routes.login') }}" method="POST" class="flex flex-col mb-6 tablet-portrait:mb-[72px]">
+                    <div class="relative block font-sans mb-4">
+                        <div class="flex justify-between mb-1">
+                            <label for="username-input" class="text-body-small-posts text-dark-text-100 dark:text-light-text-100 px-2">
+                                Tên tài khoản
+                            </label>
+                        </div>
+                        <div class="flex flex-row flex-wrap items-center">
+                            <div
+                                data-v-5062bb50=""
+                                class="bg-light-ui-100 dark:bg-dark-ui-100 transition flex flex-1 flex-row items-center box-border relative border-2 border-solid border-dark-ui-100 dark:border-light-ui-100 rounded-2xl h-10 ps-3.5 pe-2.5 font-sans"
+                            >
+                                <input
+                                    type="text" 
+                                    id="username" 
+                                    name="username"
+                                    data-v-5062bb50=""
+                                    data-pw="usernameInput"
+                                    data-testid="usernameInput"
+                                    aria-errormessage="validationMessageId1"
+                                    aria-describedby="validationMessageId1"
+                                    autocomplete="email"
+                                    placeholder="Python21.10"
+                                    class="oz-input !input-autofill dark:!input-autofill-dark !placeholder-dark-text-300 dark:!placeholder-light-text-300 !text-body-posts !text-dark-text-100 dark:!text-light-text-100 input-without-extra-content"
+                                />
+                                <span
+                                    data-v-5062bb50=""
+                                    id="validationMessageId1"
+                                    aria-live="polite"
+                                    data-testid="validationMessage"
+                                    class="absolute end-2 -bottom-2 transition text-12-16 text-danger-100 font-semibold truncate max-w-[calc(100%-1.5rem)] px-1 bg-light-ui-100 dark:bg-dark-ui-100"
+                                ></span>
+                            </div>
+                            <!---->
+                        </div>
+                        <!---->
+                    </div>
+                    <div class="relative block font-sans mb-4" style="">
+                        <div class="flex justify-between mb-1">
+                            <label for="password-input" class="text-body-small-posts text-dark-text-100 dark:text-light-text-100 px-2">
+                                Nhập mật khẩu
+                            </label>
+                            <div
+                                role="checkbox"
+                                aria-checked="false"
+                                tabindex="0"
+                                class="px-2 flex items-center cursor-pointer group outline-none"
+                                aria-label="Show password as plain text. Warning: this will display your password on the screen."
+                            >
+                                <span
+                                    class="transition-colors w-[21px] h-[21px] my-[-0.5px] rounded box-border relative flex items-center justify-center cursor-pointer hover-hover:group-focus-visible:border-2 hover-hover:group-focus-visible:border-solid border-grape-500 dark:border-canary-500"
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-dark-text-300 dark:text-light-text-300">
+                                        <path
+                                            d="M3 0.5C1.62915 0.5 0.5 1.62915 0.5 3V13C0.5 14.3708 1.62915 15.5 3 15.5H13C14.3708 15.5 15.5 14.3708 15.5 13V3C15.5 1.62915 14.3708 0.5 13 0.5H3ZM3 2.16667H13C13.47 2.16667 13.8333 2.53001 13.8333 3V13C13.8333 13.47 13.47 13.8333 13 13.8333H3C2.53001 13.8333 2.16667 13.47 2.16667 13V3C2.16667 2.53001 2.53001 2.16667 3 2.16667Z"
+                                            fill="currentColor"
+                                        ></path>
+                                    </svg>
+                                </span>
+                                <span class="font-sans text-body-extra-small ms-0.5 select-none text-dark-text-200 dark:text-light-text-200 hover-hover:group-hover:text-dark-text-100 hover-hover:dark:group-hover:text-light-text-100">
+                                    Show
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex flex-row flex-wrap items-center">
+                            <div
+                                data-v-5062bb50=""
+                                class="bg-light-ui-100 dark:bg-dark-ui-100 transition flex flex-1 flex-row items-center box-border relative border-2 border-solid border-dark-ui-100 dark:border-light-ui-100 rounded-2xl h-10 ps-3.5 pe-2.5 font-sans"
+                            >
+                                <input
+                                    data-v-5062bb50=""
+                                    data-pw="passwordInput"
+                                    data-testid="passwordInput"
+                                    aria-errormessage="validationMessageId2"
+                                    aria-describedby="validationMessageId2"
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    autocomplete="current-password"
+                                    autocapitalize="none"
+                                    placeholder="Enter password"
+                                    class="oz-input !input-autofill dark:!input-autofill-dark !placeholder-dark-text-300 dark:!placeholder-light-text-300 !text-body-posts !text-dark-text-100 dark:!text-light-text-100 input-without-extra-content"
+                                />
+                                <span
+                                    data-v-5062bb50=""
+                                    id="validationMessageId2"
+                                    aria-live="polite"
+                                    data-testid="validationMessage"
+                                    class="absolute end-2 -bottom-2 transition text-12-16 text-danger-100 font-semibold truncate max-w-[calc(100%-1.5rem)] px-1 bg-light-ui-100 dark:bg-dark-ui-100"
+                                ></span>
+                            </div>
+                            <!---->
+                        </div>
+                        <!---->
+                    </div>
+                    <div class="flex justify-center tablet-portrait:justify-end">
+                        <button
+                            class="w-full tablet-portrait:w-auto select-none border-none tap-highlight-transparent font-sans focus:outline-none flex items-center justify-center text-center py-0 h-10 rounded-2xl text-heading-4 font-semibold focus-visible:ring-[2.5px] ring-offset-[1.5px] px-5 ring-grape-500 dark:ring-canary-500 dark:ring-offset-grey-900 ring-offset-white aria-disabled:bg-button-light dark:aria:bg-button-dark aria:text-dark-text-400 dark:aria:text-light-text-400 hover-hover:aria:bg-button-light hover-hover:dark:aria:bg-button-dark hover-hover:aria:text-dark-text-400 hover-hover:dark:aria:text-light-text-400 hover-hover:active:bg-grape-500 hover-hover:dark:active:bg-canary-500 hover-hover:active:text-light-text-100 hover-hover:dark:active:text-dark-text-100 bg-padlet-pink text-light-text-100 hover-hover:hover:bg-padlet-pink-600"
+                            type="submit"
+                        >
+                            <!---->
+                            Tiếp tục
+                        </button>
+                    </div>
+                    {% if noti %}
+                        <label style="color: mediumvioletred;" class="text-body-small-posts text-dark-text-100 dark:text-light-text-100 px-2">
+                            {{ noti }}
+                        </label>
+                    {% endif %}
+                </form>
+                <p class="text-body-small-posts text-dark-text-200 dark:text-light-text-200 text-center tablet-portrait:text-start px-2 tablet-portrait:mb-4">
+                    <span>Chưa có tài khoản?</span>
+                    <a href="/register" rel="noopener nofollow" class="font-semibold no-underline tap-highlight-transparent cursor-pointer font-sans oz-text-link-light-secondary dark:oz-text-link-dark-secondary !underline" target="">
+                        Đăng ký ngay
+                    </a>
+                </p>
+                <!---->
+                <div data-v-4d2631ea="" role="status" class="fixed w-full flex flex-col items-center pointer-events-none left-0 isolate z-global-snackbar"><span data-v-4d2631ea=""></span></div>
+            </main>
+            <nav aria-label="Bottom bar" class="flex items-center fixed start-6 bottom-6 hidden tablet-portrait:flex">
+                <a
+                    href="#"
+                    rel="noopener nofollow"
+                    class="me-1 no-underline tap-highlight-transparent cursor-pointer font-sans focus:outline-none flex items-center justify-center text-center py-0 h-10 rounded-2xl text-heading-4 font-semibold focus-visible:ring-[2.5px] w-10 ring-grape-500 dark:ring-canary-500 dark:ring-offset-grey-900 ring-offset-white aria-disabled:bg-button-disabled-light dark:aria-disabled:bg-button-disabled-dark aria-disabled:text-dark-text-400 dark:aria-disabled:text-light-text-400 hover-hover:aria-disabled:bg-button-disabled-light hover-hover:dark:aria-disabled:bg-button-disabled-dark hover-hover:aria-disabled:text-dark-text-400 hover-hover:dark:aria-disabled:text-light-text-400 hover-hover:active:bg-grape-500 hover-hover:dark:active:bg-canary-500 hover-hover:active:text-light-text-100 hover-hover:dark:active:text-dark-text-100 bg-transparent text-dark-text-200 dark:text-light-text-200 hover-hover:hover:bg-opacity-10 hover-hover:hover:bg-overlay-text-bg-light-mode-light-hover hover-hover:dark:hover:bg-overlay-text-bg-dark-mode-dark-hover"
+                    title="Help page"
+                    aria-label="Help page"
+                    target="_blank"
+                >
+                    <!---->
+                    <i data-v-716abb59="" aria-hidden="true" class="oricon" style="font-size: 24px; max-width: 24px; width: 24px; height: 24px; overflow: visible;">help</i>
+                </a>
+                <a
+                    href="#"
+                    rel="noopener nofollow"
+                    class="me-2 no-underline tap-highlight-transparent cursor-pointer font-sans focus:outline-none flex items-center justify-center text-center py-0 h-10 rounded-2xl text-heading-4 font-semibold focus-visible:ring-[2.5px] w-10 ring-grape-500 dark:ring-canary-500 dark:ring-offset-grey-900 ring-offset-white aria-disabled:bg-button-disabled-light dark:aria-disabled:bg-button-disabled-dark aria-disabled:text-dark-text-400 dark:aria-disabled:text-light-text-400 hover-hover:aria-disabled:bg-button-disabled-light hover-hover:dark:aria-disabled:bg-button-disabled-dark hover-hover:aria-disabled:text-dark-text-400 hover-hover:dark:aria-disabled:text-light-text-400 hover-hover:active:bg-grape-500 hover-hover:dark:active:bg-canary-500 hover-hover:active:text-light-text-100 hover-hover:dark:active:text-dark-text-100 bg-transparent text-dark-text-200 dark:text-light-text-200 hover-hover:hover:bg-opacity-10 hover-hover:hover:bg-overlay-text-bg-light-mode-light-hover hover-hover:dark:hover:bg-overlay-text-bg-dark-mode-dark-hover"
+                    title="Accessibility"
+                    aria-label="Accessibility"
+                    target="_blank"
+                >
+                    <!---->
+                    <i data-v-716abb59="" aria-hidden="true" class="oricon" style="font-size: 24px; max-width: 24px; width: 24px; height: 24px; overflow: visible;">accessibility_outline</i>
+                </a>
+                <div>
+                    <button
+                        class="select-none border-none tap-highlight-transparent cursor-pointer font-sans focus-visible:outline-none py-0 flex items-center justify-center group h-8 rounded-xl text-body-small px-3 aria-disabled:bg-transparent aria-disabled:text-dark-text-200 dark:aria-disabled:text-light-text-200 hover-hover:active:bg-grape-500 hover-hover:dark:active:bg-canary-500 hover-hover:active:text-light-text-100 hover-hover:dark:active:text-dark-text-100 active:bg-grape-500 dark:active:bg-canary-500 active:text-light-text-100 dark:active:text-dark-text-100 focus-visible:ring-2 ring-grape-500 dark:ring-canary-500 bg-transparent text-dark-text-100 dark:text-light-text-100 hhover:bg-overlay-text-bg-light-mode-light-hover dark:hhover:bg-overlay-text-bg-dark-mode-dark-hover"
+                        dir="auto"
+                        aria-describedby="locale-selector-button-description-3"
+                        data-testid="localeMenuButton"
+                    >
+                        <!---->
+                        <span class="me-1.5">Tiếng Việt (VN)</span>
+                        <i
+                            data-v-716abb59=""
+                            aria-hidden="true"
+                            class="oricon text-dark-text-200 dark:text-light-text-200 group-active:text-light-text-200 dark:group-active:text-dark-text-200 hover-hover:group-active:text-light-text-200 hover-hover:dark:group-active:text-dark-text-200"
+                            style="font-size: 16px; max-width: 16px; width: 16px; height: 16px; overflow: visible;"
+                        >
+                            disclosure
+                        </i>
+                    </button>
+                    <p id="locale-selector-button-description-3" class="sr-only">Selecting a different language will reload the page.</p>
+                    <!---->
+                </div>
+            </nav>
+        </div>
+    </body>
 </html>
