@@ -51,7 +51,7 @@
         {% for todo in todos %}
         <div class="ui segment">
             <p class="ui big header">{{ todo.title }}</p>
-            <p>{{todo.data}}</p>
+            <pre style="font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;">{{todo.data}}</pre>
             {% if todo.status == False %}
             <span class="ui gray label">Chưa hoàn thành</span>
             {% else %}
@@ -59,7 +59,7 @@
             {% endif %}
 
             <button class="ui blue button" data-bs-toggle="modal" data-bs-target="#detailModal"
-                    onclick="detailTodo({{todo.id}}, '{{todo.title}}', '{{todo.data}}', {{todo.status}}, {{todo.userId}})">
+                    onclick="detailTodo({{todo}})">
                     Cập nhật
             </button>
             <button class="ui red button" data-bs-toggle="modal" data-bs-target="#deleteModal"
@@ -162,12 +162,16 @@
     </div>
 </div>
 <script>
-    function detailTodo(id, title, data, status, userId){
-        document.getElementById("staticBackdropLabel5").value = title;
-        document.getElementById("description").value = data;
-        document.getElementById("status").value = status;
-        document.getElementById("todoId").value = id;
-        document.getElementById("userId").value = userId;
+    // function detailTodo(id, title, data, status, userId){
+    function detailTodo(todo){
+        //let todo = todo;
+        let description = todo.data.replace(/\\n/g, '\n');
+        
+        document.getElementById("staticBackdropLabel5").value = todo.title;
+        document.getElementById("description").value = todo.data;
+        document.getElementById("status").value = todo.status;
+        document.getElementById("todoId").value = todo.id;
+        document.getElementById("userId").value = todo.userId;
     }
 
     function deleteTodo(id){
@@ -176,5 +180,6 @@
     function addTodo(userId){
         document.getElementById("userId1").value = userId;
     }
+    
 </script>
 </html>
