@@ -51,7 +51,8 @@ def getUserByName(username):
             'age': user[3],
             'email': user[4],
             'address': user[5],
-            'allowVisit': user[6]
+            'allowVisit': user[6],
+            'avatar': user[7]
         }
         print(user1)
         conn.commit()
@@ -104,7 +105,8 @@ def getUser(id):
                 'age': user[3],
                 'email': user[4],
                 'address': user[5],
-                'allowVisit': user[6]
+                'allowVisit': user[6],
+                'avatar': user[7]
             }
             # user_info['id'] = user[0]
             # user_info['username'] = user[1]

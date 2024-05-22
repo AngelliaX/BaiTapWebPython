@@ -36,9 +36,10 @@ def index2():
 @mod.route('/user/<int:id>', methods=["GET"])
 def user(id):
     user = getUser(int(id))
+    mainUser = getUser(int(request.cookies["userId"]))
     if user["allowVisit"] != 0:
         todos = get_todo_list(id)
-        return render_template("profile.html", user = user, todos = todos)
+        return render_template("profile.html", user = user, todos = todos, mainUser = mainUser)
     else:
         return render_template("notAllow.html", user = user)
 
@@ -48,13 +49,13 @@ def other_user():
     if name == None:
         name = request.args.get('name')
     user = getUserByName(name)
-    
+    mainUser = getUser(int(request.cookies["userId"]))
     if user == None:
         return render_template("notFound.html")
     if user['allowVisit'] != 0:
         todos = get_todo_list(str(user['id']))
         print("todos: ", todos)
-        return render_template("profile.html", user = user, todos = todos)
+        return render_template("profile.html", user = user, todos = todos, mainUser = mainUser)
     else:
         return render_template("notAllow.html", user = user)
 

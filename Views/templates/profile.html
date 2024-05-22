@@ -63,7 +63,7 @@
     </div>
 
     <div class="sidebar">
-        <div class="user-icon" style="cursor: pointer" ></div>
+        <div class="user-icon" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#userModal1"></div>
         <!--<button class="sidebar-button"><i class="fa-solid fa-share"></i></button>
         <button class="sidebar-button"><i class="fa-solid fa-bell"></i></button>
         <button class="sidebar-button"><i class="fa-solid fa-gear"></i></button>
@@ -110,7 +110,7 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <img id="userAvatar" src="{{ user.avatar }}" alt="User Avatar" class="rounded-circle" width="150" height="150">
+                    <img id="userAvatar" src="../static/{{ user.avatar }}" alt="User Avatar" class="rounded-circle" width="150" height="150">
                 </div>
                 
                 <h4 class="text-center" id="username">{{ user.username }}</h4>
@@ -118,6 +118,32 @@
                 <p id="age">Tuổi: {{ user.age }}</p>
                 <p id="email">Email: {{ user.email }}</p>
                 <p id="address">Địa chỉ: {{ user.address }}</p>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="userModal1" tabindex="-1" aria-labelledby="userModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel1">Thông tin người dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <img id="userAvatar1" src="../static/{{ mainUser.avatar }}" alt="User Avatar" class="rounded-circle" width="150" height="150">
+                </div>
+                
+                <h4 class="text-center" id="username">{{ mainUser.username }}</h4>
+                <hr>
+                <p id="age1">Tuổi: {{ mainUser.age }}</p>
+                <p id="email1">Email: {{ mainUser.email }}</p>
+                <p id="address1">Địa chỉ: {{ mainUser.address }}</p>
             </div>
             <div class="modal-footer">
                 
