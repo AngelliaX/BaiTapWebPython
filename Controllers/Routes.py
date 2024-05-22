@@ -21,11 +21,42 @@ def index():
     else:
         return redirect(url_for("routes.login"))
 
+@mod.route('/index2')
+def index2():
+    print(request.cookies)
+    if 'username' in request.cookies:
+        todos = get_todo_list(request.cookies["userId"])
+        return render_template("index2.html", todos=todos,
+                                              username = request.cookies["username"],
+                                              userId = request.cookies["userId"],
+                                              time=time.time())
+    else:
+        return redirect(url_for("routes.login"))
+
 @mod.route('/user/<int:id>', methods=["GET"])
 def user(id):
-    user = getUser(id)    
-    return render_template("profile.html", user = user)
+    user = getUser(int(id))
+    if user["allowVisit"] != 0:
+        todos = get_todo_list(id)
+        return render_template("profile.html", user = user, todos = todos)
+    else:
+        return render_template("notAllow.html", user = user)
 
+@mod.route('/user', methods=["GET"])
+def other_user():
+    name = request.form.get('name')
+    if name == None:
+        name = request.args.get('name')
+    user = getUserByName(name)
+    
+    if user == None:
+        return render_template("notFound.html")
+    if user['allowVisit'] != 0:
+        todos = get_todo_list(str(user['id']))
+        print("todos: ", todos)
+        return render_template("profile.html", user = user, todos = todos)
+    else:
+        return render_template("notAllow.html", user = user)
 
 
 @mod.route('/addTodo', methods=["POST"])

@@ -12,9 +12,119 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.5/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="../static/style_profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-{% include "navbar.html" %}
-<body>
 
+<body>
+    <div class="header" style="width: 90%; display: flex">
+        <div style="width: 70%">
+            <h1>Todo List của {{user.username}}</h1>
+            <button type="button" id="profile" data-bs-toggle="modal" data-bs-target="#userModal">Thông tin người dùng</button>
+        </div>
+        <div style="width: 30%">
+            <form method="get" action="/user">
+                <input type="text" name="name" id="name" placeholder="Nhập tên người dùng...">
+                <button type="submit" id="searchButton">Tìm kiếm</button>
+            </form>
+        </div>
+    </div>
+    <div class="notes-container">
+        {% for todo in todos %}
+        <div class="draggable_custom note">
+            <div class="note-header">
+                <h2 class="note-title">{{ todo.title }}</h2>
+                <!--<i class="fa-solid fa-ellipsis" onclick="openSettingsModal(event)"></i>-->
+            </div>
+            <ul class="task-list">
+                <li>{{todo.data}}</li>
+            </ul>
+            <hr>
+            <div class="note-footer">
+                {% if todo.status == True %}
+                    <span style="margin-right:115px; padding: 4px; border-radius: 8px; color: black; background-color: lime" class="completed-label">
+                        Đã xong
+                    </span>
+                {% else %}
+                    <span style="margin-right:95px; padding: 4px; border-radius: 8px; background-color: mediumvioletred; color: white;" class="completed-label">
+                        Chưa xong
+                    </span>
+                {% endif %}
+                
+                
+                <!--<div style="margin-right:17px; cursor: pointer;" class="setting-option" onclick="editPost({{todo.id}}, '{{todo.title}}', '{{todo.data}}', {{todo.status}}, {{todo.userId}})">-->
+                <div style="margin-right:17px; cursor: pointer;" class="setting-option"data-bs-toggle="modal" data-bs-target="#detailModal" onclick="detailPost({{todo}})">
+
+                    <i class="fa-solid fa-circle-info"></i> Chi tiết
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="sidebar">
+        <div class="user-icon" style="cursor: pointer" ></div>
+        <!--<button class="sidebar-button"><i class="fa-solid fa-share"></i></button>
+        <button class="sidebar-button"><i class="fa-solid fa-bell"></i></button>
+        <button class="sidebar-button"><i class="fa-solid fa-gear"></i></button>
+        <button class="sidebar-button"><i class="fa-solid fa-trash-can"></i></button>
+        <button class="sidebar-button"><i class="fa-solid fa-ellipsis"></i></button>-->
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <button class="sidebar-button" onclick="window.location.href='/logout'"><i class="fa-solid fa-right-from-bracket"></i></button>
+        
+    </div>
+
+<!--Modal detail-->
+<div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false"
+     tabindex="-1" aria-labelledby="staticBackdropLabel5" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 type="text" class="modal-title" id="staticBackdropLabel5"><h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                <label><h3>Mô tả: </h3></label><br>
+                <pre style="width: 100%; min-height: 200px" id="description" name="description" placeholder="Nhập mô tả..." readonly></pre>
+                <br><hr>
+                <label><h3>Trạng thái: </h3></label><br>
+                <div id="status"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="ui red button" data-bs-dismiss="modal">Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Thông tin người dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <img id="userAvatar" src="{{ user.avatar }}" alt="User Avatar" class="rounded-circle" width="150" height="150">
+                </div>
+                
+                <h4 class="text-center" id="username">{{ user.username }}</h4>
+                <hr>
+                <p id="age">Tuổi: {{ user.age }}</p>
+                <p id="email">Email: {{ user.email }}</p>
+                <p id="address">Địa chỉ: {{ user.address }}</p>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script src="../static/scripts.js"></script>
 </html>

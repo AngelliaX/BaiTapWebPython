@@ -48,6 +48,36 @@ function editPost(id, title, data, status, userId) {
     editModal.style.display = 'block';
 }
 
+function editPost(todo){
+    let description = todo.data.replace(/\\n/g, '\n');
+    document.getElementById("modal-edit-header").value = todo.title;
+    document.getElementById("staticBackdropLabel5").value = todo.title;
+
+    document.getElementById("modal-edit-description").value = todo.data;
+    document.getElementById("modal-edit-status").value = todo.status;
+    console.log("hello", todo.status)
+    document.getElementById("todoId").value = todo.id;
+    document.getElementById("userId").value = todo.userId;
+
+    editModal.style.display = 'block';
+}
+
+function detailPost(todo){
+    let description = todo.data.replace(/\\n/g, '\n');
+    document.getElementById("staticBackdropLabel5").innerText = todo.title;
+    document.getElementById("description").innerText = todo.data;
+    if (todo.status == 0){
+        document.getElementById("status").innerHTML = '<span style="margin-right:98px; padding: 4px; border-radius: 8px; color: black; background-color: lime" class="completed-label">Đã xong</span>';
+    } else {
+        document.getElementById("status").innerHTML = '<span style="margin-right:74px; padding: 4px; border-radius: 8px; background-color: mediumvioletred; color: white;" class="completed-label">Chưa xong</span>';
+    }
+    
+    console.log("hello", todo.status)
+
+
+    editModal.style.display = 'block';
+}
+
 function deletePost(id) {
     document.getElementById("idDelete").value = id;
     deleteModal.style.display = 'block';

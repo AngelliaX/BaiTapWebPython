@@ -8,16 +8,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="header">
-        <p class="subtitle">Xin chào, {{username}}!</p>
-        <h1>My Todo List</h1>
+    <div class="header" style="width: 90%; display: flex">
+        <div style="width: 70%">
+            <p class="subtitle">Xin chào, {{username}}!</p>
+            <h1>My Todo List</h1>
+        </div>
+        <div style="width: 30%">
+            <form method="get" action="/user">
+                <input type="text" name="name" id="name" placeholder="Nhập tên người dùng...">
+                <button type="submit" id="searchButton">Tìm kiếm</button>
+            </form>
+        </div>
     </div>
     <div class="notes-container">
         {% for todo in todos %}
         <div class="draggable_custom note">
             <div class="note-header">
                 <h2 class="note-title">{{ todo.title }}</h2>
-                <i class="fa-solid fa-ellipsis" onclick="openSettingsModal(event)"></i>
+                <!--<i class="fa-solid fa-ellipsis" onclick="openSettingsModal(event)"></i>-->
             </div>
             <ul class="task-list">
                 <li>{{todo.data}}</li>
@@ -25,13 +33,19 @@
             <hr>
             <div class="note-footer">
                 {% if todo.status == True %}
-                    <span style="margin-right:80px; color: lime;" class="completed-label">Đã Xong</span>
+                    <span style="margin-right:98px; padding: 4px; border-radius: 8px; color: black; background-color: lime" class="completed-label">
+                        Đã xong
+                    </span>
                 {% else %}
-                    <span style="margin-right:80px; color: mediumvioletred;" class="completed-label">Chưa xong</span>
+                    <span style="margin-right:74px; padding: 4px; border-radius: 8px; background-color: mediumvioletred; color: white;" class="completed-label">
+                        Chưa xong
+                    </span>
                 {% endif %}
                 
                 
-                <div style="margin-right:17px; cursor: pointer;" class="setting-option" onclick="editPost({{todo.id}}, '{{todo.title}}', '{{todo.data}}', {{todo.status}}, {{todo.userId}})">
+                <!--<div style="margin-right:17px; cursor: pointer;" class="setting-option" onclick="editPost({{todo.id}}, '{{todo.title}}', '{{todo.data}}', {{todo.status}}, {{todo.userId}})">-->
+                <div style="margin-right:17px; cursor: pointer;" class="setting-option" onclick="editPost({{todo}})">
+
                     <i class="fa-solid fa-edit"></i> Edit
                 </div>
 
@@ -45,11 +59,11 @@
     
     <div class="sidebar">
         <div class="user-icon"></div>
-        <button class="sidebar-button"><i class="fa-solid fa-share"></i></button>
+        <!--<button class="sidebar-button"><i class="fa-solid fa-share"></i></button>
         <button class="sidebar-button"><i class="fa-solid fa-bell"></i></button>
         <button class="sidebar-button"><i class="fa-solid fa-gear"></i></button>
         <button class="sidebar-button"><i class="fa-solid fa-trash-can"></i></button>
-        <button class="sidebar-button"><i class="fa-solid fa-ellipsis"></i></button>
+        <button class="sidebar-button"><i class="fa-solid fa-ellipsis"></i></button>-->
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <button class="sidebar-button" onclick="window.location.href='/logout'"><i class="fa-solid fa-right-from-bracket"></i></button>
         <div class="add-note" onclick="openModal({{userId}})">
@@ -112,12 +126,12 @@
         <div class="modal-content">
             <form method="post" action="/editTodo">
                 <div class="modal-header">
-                    <h2 style="color:black" id="modal-edit-header"> Đây là title </h2>
-                    <input type="hidden" type="text" class="modal-title" id="staticBackdropLabel5" name="todoTitle">
+                    <input type="text" style="color: black" id="modal-edit-header" name="todoTitle"> Đây là title </input>
+                    <input type="hidden" type="text" class="modal-title" id="staticBackdropLabel5">
                     <span class="close" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></span>
                 </div>
                 <hr>
-                <div class="modal-body">
+                <div class="modal-body" style="padding-top: 0">
                     <p>Description</p>
                     <textarea id="modal-edit-description" name="description"></textarea>
                     <hr>
