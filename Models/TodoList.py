@@ -47,10 +47,10 @@ def get_todo_list(userId):
         # conn.commit()
         todos = cursor.fetchall()
         todolist = []
-        print("Length: ", len(todos))
-        print("Todos: ", todos)
+        # print("Length: ", len(todos))
+        # print("Todos: ", todos)
         for row in todos:
-            print(row[0])
+            # print(row[0])
             todo = {"id": row[0], "title": row[1], "data": row[2], "status": row[3], "userId": row[4]}
             todolist.append(todo)
         # print(todos)
@@ -100,12 +100,12 @@ def removeTodo(id):
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
         query = "DELETE FROM todolists WHERE id = " + id
-        print(query)
-        cursor.execute('''
-                       DELETE FROM todolists 
-                       WHERE id = ?
-                    ''', id)
-        # cursor.execute(query)
+        print("Query", query)
+        # cursor.execute('''
+        #                DELETE FROM todolists 
+        #                WHERE id = ?
+        #             ''', id)
+        cursor.execute(query)
         conn.commit()
         conn.close()
         return True
