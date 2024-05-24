@@ -120,3 +120,14 @@ def getUser(id):
             return "Không tìm thấy user!"
     except Exception as e:
         return str(e)
+
+def updateUser(username, age, email, address, id):
+    try:
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        cursor.execute("UPDATE users SET username = ?, age = ?, email = ?, address = ? WHERE id = ?", (username, age, email, address, id))
+        conn.commit()
+        conn.close()
+        return True
+    except Exception as e:
+        return str(e)

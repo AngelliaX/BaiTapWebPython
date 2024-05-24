@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Không thể truy cập</title>
+<title>Thông tin cá nhân</title>
 
 <style id="" media="all">/* cyrillic-ext */
 @font-face {
@@ -136,7 +136,15 @@
 </style>
 
 <link rel="stylesheet" href="../static/style_notAllow.css" />
+<!-- bootstrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- sweetalert js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.5/dist/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <meta name="robots" content="noindex, follow">
 </head>
@@ -144,18 +152,67 @@
 <div id="notfound" style="background-color: gray">
 <div class="notfound">
 
-<h1>Không thể truy cập</h1>
+<h1>Thông tin người dùng</h1>
 
-<h3>Người dùng này không cho phép truy cập từ người khác.</h3>
+<div class="modal-body">
+    <div class="text-center">
+        <img id="userAvatar1" src="../static/{{ mainUser.avatar }}" alt="User Avatar" class="rounded-circle" width="150" height="150">
+    </div>
+    
+    <h4 class="text-center" id="username">{{ mainUser.username }}</h4>
+    <hr>
+    <p id="age">Tuổi: {{ mainUser.age }}</p>
+    <p id="email">Email: {{ mainUser.email }}</p>
+    <p id="address">Địa chỉ: {{ mainUser.address }}</p>
+</div>
+
+    <button type="button" style="width: 150px; height: 40px; cursor: pointer; background-color: blue; color: white; border: none; border-radius: 10px"
+            class="btn btn-primary" id="editUserButton" data-bs-toggle="modal" data-bs-target="#userModal1">
+        Chỉnh sửa thông tin
+    </button>
+
 
 <a href="/">
-    <button type="button" style="width: 100px; height: 50px; cursor: pointer; background-color: blue; color: white; border: none; border-radius: 10px">
+    <button type="button" style="width: 100px; height: 40px; cursor: pointer; background-color: blue; color: white; border: none; border-radius: 10px">
     Go back
     </button>
 </a>
 
-</div>
-</div>
 
+</div>
+</div>
+<div class="modal fade" id="userModal1" tabindex="-1" aria-labelledby="userModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="/updateUser">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel1">Thông tin người dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <img id="userAvatar1" src="../static/{{ mainUser.avatar }}" alt="User Avatar" class="rounded-circle" width="150" height="150">
+                </div>
+                <label>Tên: </label>
+                <input class="form-control" id="username1" name="username" value="{{ mainUser.username }}"><br>
+                <label>Tuổi: </label>
+                <input class="form-control" id="age1" name="age" value="{{ mainUser.age }}"><br>
+                <label>Email: </label>
+                <input class="form-control" id="email1" name="email" value="{{ mainUser.email }}"><br>
+                <label>Địa chỉ: </label>
+                <input class="form-control" id="address1" name="address"value="{{ mainUser.address }}"><br>
+            </div>
+            <hr>
+            <div class="modal-footer">
+                <button type="button" class="ui red button" data-bs-dismiss="modal">Đóng
+                </button>
+                <button type="submit" class="ui blue button" data-bs-dismiss="modal">Lưu
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

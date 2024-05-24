@@ -8,15 +8,38 @@ import time
 # todos = [{"task":"Sample Todo 1", "done":False},{"task":"Sample Todo 2", "done":False}]
 
 
-
+@mod.route('/user-info')
+def userInfo():
+    print(request.cookies)
+    if 'username' in request.cookies:
+        mainUser = getUser(int(request.cookies["userId"]))
+        return render_template("user_info.html", username = request.cookies["username"],
+                                              userId = request.cookies["userId"],
+                                              mainUser = mainUser,
+                                              time=time.time())
+    else:
+        return redirect(url_for("routes.login"))
+    
+@mod.route('/updateUser', methods=["POST"])
+def update_user():
+    username = request.form.get("username")
+    age = request.form.get("age")
+    email = request.form.get("email")
+    address = request.form.get("address")
+    id = int(request.cookies["userId"])
+    updateUser(username, age, email, address, id)
+    return redirect(url_for("routes.userInfo"))
+    
 @mod.route('/')
 def index():
     print(request.cookies)
     if 'username' in request.cookies:
+        mainUser = getUser(int(request.cookies["userId"]))
         todos = get_todo_list(request.cookies["userId"])
         return render_template("index.html", todos=todos,
                                               username = request.cookies["username"],
                                               userId = request.cookies["userId"],
+                                              mainUser = mainUser,
                                               time=time.time())
     else:
         return redirect(url_for("routes.login"))
@@ -63,15 +86,13 @@ def other_user():
 @mod.route('/addTodo', methods=["POST"])
 def addTodo():
     try:
-        print('called 1')
         id = request.form.get('todoId')
         title = request.form.get('todoTitle')
         data = request.form.get('description')
         status = request.form.get('status')
         userId = request.form.get('userId')
-        print('called 2')
+        
         insertTodo(id, title, data, status, userId)
-        print('called 3')
         print(id, title, data, status, userId)
         return redirect(url_for("routes.index"))
     except Exception as e:

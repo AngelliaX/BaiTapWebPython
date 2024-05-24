@@ -6,6 +6,7 @@
     <title>My Todo List</title>
     <link rel="stylesheet" href="../static/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <div class="header" style="width: 90%; display: flex">
@@ -33,11 +34,11 @@
             <hr>
             <div class="note-footer">
                 {% if todo.status == True %}
-                    <span style="margin-right:98px; padding: 4px; border-radius: 8px; color: black; background-color: lime" class="completed-label">
+                    <span style="margin-right:90px; padding: 6px; border-radius: 8px; color: black; background-color: lime; box-sizing: none" class="completed-label">
                         Đã xong
                     </span>
                 {% else %}
-                    <span style="margin-right:74px; padding: 4px; border-radius: 8px; background-color: mediumvioletred; color: white;" class="completed-label">
+                    <span style="margin-right:70px; padding: 6px; border-radius: 8px; background-color: mediumvioletred; color: white;" class="completed-label">
                         Chưa xong
                     </span>
                 {% endif %}
@@ -58,7 +59,7 @@
     </div>
     
     <div class="sidebar">
-        <div class="user-icon"></div>
+        <a href="/user-info"><div class="user-icon" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#userModal1"></div></a>
         <!--<button class="sidebar-button"><i class="fa-solid fa-share"></i></button>
         <button class="sidebar-button"><i class="fa-solid fa-bell"></i></button>
         <button class="sidebar-button"><i class="fa-solid fa-gear"></i></button>
@@ -168,7 +169,6 @@
             </form>
             
     </div>
-
     <script src="../static/scripts.js"></script>
     </body>
 </html>
